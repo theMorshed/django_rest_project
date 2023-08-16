@@ -2,7 +2,6 @@ from rest_framework import serializers, viewsets
 from django_api.models import Product, ProductReview
 
 class ProductSerializer(serializers.ModelSerializer):
-    # reviews = serializers.StringRelatedField(many=True)
     class Meta:
         model = Product
         fields = '__all__'
