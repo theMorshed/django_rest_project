@@ -17,3 +17,10 @@ class ProductReviewViewSet(viewsets.ModelViewSet):
     # permission_classes = [IsAuthenticated]
     queryset = ProductReview.objects.all()
     serializer_class = ProductReviewSerializer
+    
+    def get_queryset(self):
+        queryset = ProductReview.objects.all()
+        username = self.request.query_params.get('username')
+        if username is not None:
+            queryset = queryset.filter(user__username=username)
+        return queryset
