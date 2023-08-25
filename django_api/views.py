@@ -6,6 +6,7 @@ from django_api.serializers import ProductSerializer, ProductReviewSerializer
 from django_api.permissions import AdminOrReadOnly, ReviewOrReadOnly
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import filters
+from django_api.pagination import ProductPagination
 
 # Create your views here.
 class ProductViewSet(viewsets.ModelViewSet):
@@ -17,6 +18,7 @@ class ProductViewSet(viewsets.ModelViewSet):
     # search_fields = ['name', 'description']
     filter_backends = [filters.OrderingFilter]
     ordering_fields = ['price']
+    pagination_class = ProductPagination
     
 class ProductReviewViewSet(viewsets.ModelViewSet):
     permission_classes = [ReviewOrReadOnly]
